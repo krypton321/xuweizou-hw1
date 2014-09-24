@@ -40,20 +40,20 @@
         <name>OutputFileName</name>
         <type>String</type>
         <multiValued>false</multiValued>
-        <mandatory>true</mandatory>
+        <mandatory>false</mandatory>
       </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
-        <name>OutputDirectory</name>
-        <value>
-          <string>/home/krypton/xmi_output/</string>
-        </value>
-      </nameValuePair>
-    <nameValuePair>
         <name>OutputFileName</name>
         <value>
-          <string>sample.out</string>
+          <string>hw1-xuweiz.out</string>
+        </value>
+      </nameValuePair>
+	<nameValuePair>
+        <name>OutputDirectory</name>
+        <value>
+          <string>./src/</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

@@ -59,7 +59,7 @@
 		    <nameValuePair>
 		        <name>InputDirectory</name>
 		        <value>
-		            <string>/home/krypton/workspace/hw1-xuweiz/src/main/resources/data/sample.in</string>
+		            <string>./src/main/resources/data/sample.in</string>
 		        </value>
 		    </nameValuePair>
             </configurationParameterSettings>
