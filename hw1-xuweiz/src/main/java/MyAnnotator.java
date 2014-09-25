@@ -3,9 +3,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import mypackage.MyTypeSystem;
 
+import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
@@ -21,16 +23,32 @@ import com.aliasi.util.AbstractExternalizable;
 public class MyAnnotator extends JCasAnnotator_ImplBase {
 
   public static final String PARAM_DICTDIR = "DictDirectory";
-  
- Chunker mchunker = null;
- 
- String mDictPath;
- 
- /**
-  * Process the CAS provided by the Reader. Analysis tool will load dictionary from project/src/main/resources/MyDict.dic.
-  * Sentences will be analyze by tool  and process into phrase and single word. Related information will be put into TypeSystem
-  * and be pushed back into CAS.
-  */
+
+  static Chunker mchunker = null;
+
+  String mDictPath;
+/**
+ * Initialize the LingPipe tool.
+ */
+  public void initialize(UimaContext aContext) throws ResourceInitializationException {
+    File modelFile = new File("./src/main/resources", "MyDict.dic");
+    try {
+      mchunker = (Chunker) AbstractExternalizable.readObject(modelFile);
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Process the CAS provided by the Reader. Analysis tool will load dictionary from
+   * project/src/main/resources/MyDict.dic. Sentences will be analyze by tool and process into
+   * phrase and single word. Related information will be put into TypeSystem and be pushed back into
+   * CAS.
+   */
   @Override
   public void process(JCas aJCas) throws AnalysisEngineProcessException {
     // TODO Auto-generated method stub
@@ -41,14 +59,11 @@ public class MyAnnotator extends JCasAnnotator_ImplBase {
     if (it.hasNext()) {
       mts = (MyTypeSystem) it.next();
       mark = mts.getMark();
+      //doc = mts.getSentence();
     }
-    File modelFile = new File("./src/main/resources", "MyDict.dic");
 
-    Chunker chunker;
-    try {
-      chunker = (Chunker) AbstractExternalizable.readObject(modelFile);
-      Chunking chunking = chunker.chunk(doc);
-     // System.out.println("Chunking=" + chunking);
+      Chunking chunking = mchunker.chunk(doc);
+      // System.out.println("Chunking=" + chunking);
       Set<Chunk> set = chunking.chunkSet();
       Iterator ite = set.iterator();
 
@@ -59,18 +74,13 @@ public class MyAnnotator extends JCasAnnotator_ImplBase {
         mys.setEnd(c.end());
         mys.setMark(mark);
         mys.setGene(doc.substring(c.start(), c.end()));
-    //    System.out.println(mys.getMark() + " " + mys.getStart() + " " + mys.getEnd() + " "
-       //         + mys.getGene());
+     //   mys.setSentence(doc);
+        // System.out.println(mys.getMark() + " " + mys.getStart() + " " + mys.getEnd() + " "
+        // + mys.getGene());
         mys.addToIndexes(aJCas);
       }
 
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+
     mts.removeFromIndexes(aJCas);
     /*
      * PosTagNamedEntityRecognizer rec; try { rec = new PosTagNamedEntityRecognizer();

@@ -23,18 +23,16 @@ public class MyReader extends CollectionReader_ImplBase {
 
   public static final String PARAM_ENCODING = "Encoding";
 
-  public static final String PARAM_SUBDIR = "BrowseSubdirectories";
+  //public static final String PARAM_SUBDIR = "BrowseSubdirectories";
 
-  // private ArrayList<File> mFiles;
 
   private String mEncoding;
 
 
-  private Boolean mRecursive;
+  //private Boolean mRecursive;
 
   private int mCurrentIndex;
 
- // private int mLineIndex;
 
   private String[] line;
 /**
@@ -45,10 +43,10 @@ public class MyReader extends CollectionReader_ImplBase {
   public void initialize() throws ResourceInitializationException {
     File directory = new File(((String) getConfigParameterValue(PARAM_INPUTDIR)).trim());
     mEncoding = (String) getConfigParameterValue(PARAM_ENCODING);
-    mRecursive = (Boolean) getConfigParameterValue(PARAM_SUBDIR);
-    if (null == mRecursive) { // could be null if not set, it is optional
-      mRecursive = Boolean.FALSE;
-    }
+    //mRecursive = (Boolean) getConfigParameterValue(PARAM_SUBDIR);
+    //if (null == mRecursive) { // could be null if not set, it is optional
+    //  mRecursive = Boolean.FALSE;
+   // }
     mCurrentIndex = 0;
 
 
@@ -74,7 +72,20 @@ public class MyReader extends CollectionReader_ImplBase {
     } catch (CASException e) {
       throw new CollectionException(e);
     }
-    String s=line[mCurrentIndex++];
+  //  for(;mCurrentIndex<line.length;mCurrentIndex++){
+      String s=line[mCurrentIndex++];
+      String[] s1 = s.split(" ", 2);
+      String mark =s1[0];
+      String sentence = s1[1];
+      jcas.setDocumentText(sentence);
+      MyTypeSystem mts = new MyTypeSystem(jcas);
+      mts.setMark(mark);
+      
+    //  mts.setSentence(sentence);
+      mts.addToIndexes();
+ //     jcas.setDocumentText(s.substring(15));
+//    }
+ /*   String s=line[mCurrentIndex++];
     String mark =s.substring(0, 14);
     jcas.setDocumentText(s.substring(15));
 
@@ -82,7 +93,7 @@ public class MyReader extends CollectionReader_ImplBase {
 
     MyTypeSystem mts = new MyTypeSystem(jcas);
     mts.setMark(mark);
-    mts.addToIndexes();
+    mts.addToIndexes();*/
     // }
   }
 /**

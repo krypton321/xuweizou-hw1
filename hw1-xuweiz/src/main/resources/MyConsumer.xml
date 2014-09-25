@@ -59,7 +59,7 @@
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>
-        <import location="MyTypeSystem.xml"/>
+        <import name="MyTypeSystem"/>
       </imports>
     </typeSystemDescription>
     <typePriorities/>

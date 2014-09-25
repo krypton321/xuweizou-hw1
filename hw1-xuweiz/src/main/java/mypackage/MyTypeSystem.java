@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Sun Sep 21 17:38:16 EDT 2014
- * XML source: /home/krypton/workspace/hw1-xuweiz/src/main/XML/MyTypeSystem.xml
+ * Updated by JCasGen Wed Sep 24 22:11:55 EDT 2014
+ * XML source: /home/krypton/git/xuweizou-hw1/hw1-xuweiz/src/main/resources/MyTypeSystem.xml
  * @generated */
 public class MyTypeSystem extends Annotation {
   /** @generated
@@ -54,10 +54,13 @@ public class MyTypeSystem extends Annotation {
     readObject();
   }   
 
-  /** <!-- begin-user-doc -->
+  /** 
+   * <!-- begin-user-doc -->
     * Write your own initialization here
     * <!-- end-user-doc -->
-  @generated modifiable */
+  *
+   * @generated modifiable 
+   */
   private void readObject() {/*default - does nothing empty block */}
      
  
@@ -66,14 +69,18 @@ public class MyTypeSystem extends Annotation {
   //* Feature: gene
 
   /** getter for gene - gets gene name string
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public String getGene() {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_gene == null)
       jcasType.jcas.throwFeatMissing("gene", "mypackage.MyTypeSystem");
     return jcasType.ll_cas.ll_getStringValue(addr, ((MyTypeSystem_Type)jcasType).casFeatCode_gene);}
     
   /** setter for gene - sets gene name string 
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setGene(String v) {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_gene == null)
       jcasType.jcas.throwFeatMissing("gene", "mypackage.MyTypeSystem");
@@ -84,14 +91,18 @@ public class MyTypeSystem extends Annotation {
   //* Feature: start
 
   /** getter for start - gets 
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public int getStart() {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_start == null)
       jcasType.jcas.throwFeatMissing("start", "mypackage.MyTypeSystem");
     return jcasType.ll_cas.ll_getIntValue(addr, ((MyTypeSystem_Type)jcasType).casFeatCode_start);}
     
   /** setter for start - sets  
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setStart(int v) {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_start == null)
       jcasType.jcas.throwFeatMissing("start", "mypackage.MyTypeSystem");
@@ -102,14 +113,18 @@ public class MyTypeSystem extends Annotation {
   //* Feature: end
 
   /** getter for end - gets 
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public int getEnd() {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_end == null)
       jcasType.jcas.throwFeatMissing("end", "mypackage.MyTypeSystem");
     return jcasType.ll_cas.ll_getIntValue(addr, ((MyTypeSystem_Type)jcasType).casFeatCode_end);}
     
   /** setter for end - sets  
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setEnd(int v) {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_end == null)
       jcasType.jcas.throwFeatMissing("end", "mypackage.MyTypeSystem");
@@ -120,14 +135,18 @@ public class MyTypeSystem extends Annotation {
   //* Feature: mark
 
   /** getter for mark - gets 
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public String getMark() {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_mark == null)
       jcasType.jcas.throwFeatMissing("mark", "mypackage.MyTypeSystem");
     return jcasType.ll_cas.ll_getStringValue(addr, ((MyTypeSystem_Type)jcasType).casFeatCode_mark);}
     
   /** setter for mark - sets  
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setMark(String v) {
     if (MyTypeSystem_Type.featOkTst && ((MyTypeSystem_Type)jcasType).casFeat_mark == null)
       jcasType.jcas.throwFeatMissing("mark", "mypackage.MyTypeSystem");
