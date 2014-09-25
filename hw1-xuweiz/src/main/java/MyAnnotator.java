@@ -30,6 +30,7 @@ public class MyAnnotator extends JCasAnnotator_ImplBase {
 /**
  * Initialize the LingPipe tool.
  */
+  @Override
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     File modelFile = new File("./src/main/resources", "MyDict.dic");
     try {
